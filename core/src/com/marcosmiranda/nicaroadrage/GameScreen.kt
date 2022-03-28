@@ -109,6 +109,7 @@ class GameScreen(private val game: NicaRoadRage): Screen {
     private var itemTime = 0f
 
     init {
+        window.hideBannerAd()
         state = GameState.STARTING
 
         Gdx.input.setCatchKey(Input.Keys.BACK, true)

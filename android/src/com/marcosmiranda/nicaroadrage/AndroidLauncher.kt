@@ -12,8 +12,8 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 import com.google.android.gms.ads.*
 import java.util.*
 
-// private const val APP_ID = "ca-app-pub-1385681571936835~2870107120"
-private const val AD_UNIT_ID = "ca-app-pub-1385681571936835/9770557397"
+private const val APP_ID = "ca-app-pub-2838402743054690~2335446736"
+private const val AD_UNIT_ID = "ca-app-pub-2838402743054690/4317283254"
 // private const val AD_INTERSTITAL_UNIT_ID = "ca-app-pub-1385681571936835/3225330348"
 // private const val AD_UNIT_TEST_ID = "ca-app-pub-3940256099942544/6300978111" // Test
 
@@ -68,7 +68,7 @@ class AndroidLauncher : AndroidApplication(), WindowController {
 
     private fun createAdView(): AdView {
         adView = AdView(this)
-        adView.visibility = View.INVISIBLE
+        // adView.visibility = View.INVISIBLE
         adView.setBackgroundColor(backColor)
         adView.adUnitId = AD_UNIT_ID
         // adView.adUnitId = AD_UNIT_TEST_ID
@@ -100,7 +100,7 @@ class AndroidLauncher : AndroidApplication(), WindowController {
 
     private fun startAdvertising(adView: AdView) {
         val testDevices: MutableList<String> = ArrayList()
-        testDevices.add("3B317ED93FEC6B5C4E4469A5DA37932F")
+        // testDevices.add("3B317ED93FEC6B5C4E4469A5DA37932F")
         testDevices.add("BE89C404157C24CCDB17A860A9B5B878")
 
         val reqConf = RequestConfiguration.Builder()
@@ -135,8 +135,8 @@ class AndroidLauncher : AndroidApplication(), WindowController {
 
     override fun hideBannerAd() {
         runOnUiThread {
-            //adView.visibility = View.INVISIBLE
-            adView.visibility = View.GONE
+            adView.visibility = View.INVISIBLE
+            // adView.visibility = View.GONE
         }
     }
 
