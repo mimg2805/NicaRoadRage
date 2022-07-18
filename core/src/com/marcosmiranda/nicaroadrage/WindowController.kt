@@ -6,4 +6,5 @@ interface WindowController {
     fun showBannerAd()
     fun hideBannerAd()
     fun isWifiOn(): Boolean
+    fun isDataOn(): Boolean
 }

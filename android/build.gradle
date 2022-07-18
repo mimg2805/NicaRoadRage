@@ -1,5 +1,5 @@
 android {
-    kotlinOptions.useIR = true
+    // kotlinOptions.useIR = true
     compileSdkVersion 32
     sourceSets {
         main {
@@ -19,7 +19,7 @@ android {
         applicationId "com.marcosmiranda.nicaroadrage"
         minSdkVersion 23
         targetSdkVersion 32
-        versionCode 101
+        versionCode 102
         versionName version
     }
     buildTypes {
@@ -88,5 +88,5 @@ task run(type: Exec) {
 }
 
 dependencies {
-    implementation "com.google.android.gms:play-services-ads:20.6.0" // Ads
+    implementation "com.google.android.gms:play-services-ads:21.1.0" // Ads
 }

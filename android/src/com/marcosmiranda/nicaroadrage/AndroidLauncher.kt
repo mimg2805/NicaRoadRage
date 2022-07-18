@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
 import com.badlogic.gdx.backends.android.AndroidApplication
@@ -74,7 +75,7 @@ class AndroidLauncher : AndroidApplication(), WindowController {
         // adView.adUnitId = AD_UNIT_TEST_ID
         val adViewId = 12345
         adView.id = adViewId // this is an arbitrary id, allows for relative positioning in createGameView()
-        adView.adSize = AdSize.BANNER
+        adView.setAdSize(AdSize.BANNER)
         val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
         // val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT)
         // val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
@@ -145,7 +146,15 @@ class AndroidLauncher : AndroidApplication(), WindowController {
         val network = cm.activeNetwork
         val nc = cm.getNetworkCapabilities(network)
 
-        return nc!!.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+        return nc?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ?: false
+    }
+
+    override fun isDataOn(): Boolean {
+        val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = cm.activeNetwork
+        val nc = cm.getNetworkCapabilities(network)
+
+        return nc?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ?: false
     }
 
     override fun hideSystemUI() {
@@ -180,11 +189,5 @@ class AndroidLauncher : AndroidApplication(), WindowController {
             }
         }
     }
-
-    /*
-    override fun createAudio(context: Context?, config: AndroidApplicationConfiguration?): AndroidAudio {
-        return AsynchronousAndroidAudio(context, config)
-    }
-    */
 
 }

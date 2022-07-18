@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlinVersion = '1.6.10'
+    ext.kotlinVersion = '1.7.10'
 
     repositories {
         mavenLocal()
@@ -9,7 +9,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.android.tools.build:gradle:7.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
@@ -17,12 +17,12 @@ buildscript {
 allprojects {
     apply plugin: 'idea'
 
-    version = '1.0.1'
-    // version = '1.0.1-' + getDate()
+    version = '1.0.2'
+    // version = '1.0.2-' + getDate()
     ext {
         appName = 'NicaRoadRage'
-        gdxVersion = '1.10.0'
-        // gdxVersion = '1.10.1-SNAPSHOT'
+        gdxVersion = '1.11.0'
+        // gdxVersion = '1.11.1-SNAPSHOT'
         // roboVMVersion = '2.3.5'
         // box2DLightsVersion = '1.4'
         // ashleyVersion = '1.7.0'
@@ -73,6 +73,6 @@ project(":core") {
     }
 }
 
-static def getDate() {
-    return new Date().format("yyyyMMdd")
-}
+//static def getDate() {
+//    return new Date().format("yyyyMMdd")
+//}

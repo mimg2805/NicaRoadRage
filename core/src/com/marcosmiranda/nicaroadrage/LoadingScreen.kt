@@ -31,7 +31,7 @@ class LoadingScreen(private val game: NicaRoadRage) : Screen {
 
     init {
         // Show ads, if there's WiFi
-        if (window.isWifiOn()) window.showBannerAd()
+        if (window.isWifiOn() || window.isDataOn()) window.showBannerAd()
 
         setBackColor(BACK_COLOR)
         state = GameState.LOADING

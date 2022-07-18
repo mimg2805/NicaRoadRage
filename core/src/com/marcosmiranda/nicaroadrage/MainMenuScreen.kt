@@ -31,7 +31,7 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
 
     init {
         // Show ads, if there's WiFi
-        if (window.isWifiOn()) window.showBannerAd()
+        if (window.isWifiOn() || window.isDataOn()) window.showBannerAd()
 
         game.state = GameState.MENU
         setBackColor(BACK_COLOR)
