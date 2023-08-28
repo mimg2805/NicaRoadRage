@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.marcosmiranda.nicaroadrage" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 
     <application
         android:allowBackup="false"
@@ -16,10 +16,9 @@
         android:installLocation="preferExternal"
         android:label="@string/app_name"
         android:theme="@style/GdxTheme"
-        android:vmSafeMode="true" >
+        android:vmSafeMode="true">
         <activity
             android:name="com.marcosmiranda.nicaroadrage.AndroidLauncher"
-            android:label="@string/app_name" 
             android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
             android:exported="true">

@@ -104,7 +104,12 @@ class LoadingScreen(private val game: NicaRoadRage) : Screen {
         assets.load(VOLUME_UP_ICON_PATH, Texture::class.java)
         assets.load(HELP_ICON_PATH, Texture::class.java)
         assets.load(STAR_ICON_PATH, Texture::class.java)
+        assets.load(CIRCLE_PLUS_ICON_PATH, Texture::class.java)
         assets.load(EXIT_ICON_PATH, Texture::class.java)
+
+        assets.load(SENIASNICAS_IMG_PATH, Texture::class.java)
+        assets.load(CURSOESTADISTICABASICA_IMG_PATH, Texture::class.java)
+        assets.load(PURISIMA_IMG_PATH, Texture::class.java)
 
         // Loading text
         val fontName = PIXELEMULATOR_FONT_NAME + "24.ttf"
@@ -133,6 +138,7 @@ class LoadingScreen(private val game: NicaRoadRage) : Screen {
             val playerName = prefs.getString("playerName", "")
             if (playerName.isBlank()) game.screen = NewGameScreen(game)
             else game.screen = MainMenuScreen(game)
+            // else game.screen = MoreAppsScreen(game)
         }
     }
 

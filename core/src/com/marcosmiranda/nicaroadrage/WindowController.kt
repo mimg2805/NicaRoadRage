@@ -7,4 +7,5 @@ interface WindowController {
     fun hideBannerAd()
     fun isWifiOn(): Boolean
     fun isDataOn(): Boolean
+    fun openPlayStore(name: String)
 }

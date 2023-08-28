@@ -1,6 +1,10 @@
+static def getDate() {
+    return new Date().format("yyyyMMdd").toInteger()
+}
+
 android {
     // kotlinOptions.useIR = true
-    compileSdkVersion 32
+    compileSdk 34
     sourceSets {
         main {
             manifest.srcFile "AndroidManifest.xml"
@@ -18,22 +22,30 @@ android {
     defaultConfig {
         applicationId "com.marcosmiranda.nicaroadrage"
         minSdkVersion 23
-        targetSdkVersion 32
-        versionCode 102
+        targetSdkVersion 34
+
+        versionCode getDate()
         versionName version
+        // versionName version + "-" + getDate()
     }
     buildTypes {
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    namespace "com.marcosmiranda.nicaroadrage"
 }
 
 // called every time gradle gets executed, takes the native dependencies of
 // the natives configuration, and extracts them to the proper libs/ folders
 // so they get packed with the APK.
-task copyAndroidNatives {
+tasks.register('copyAndroidNatives') {
     doFirst {
         file("libs/armeabi/").mkdirs()
         file("libs/armeabi-v7a/").mkdirs()
@@ -48,7 +60,7 @@ task copyAndroidNatives {
             if (jar.name.endsWith("natives-armeabi.jar")) outputDir = file("libs/armeabi")
             if (jar.name.endsWith("natives-x86_64.jar")) outputDir = file("libs/x86_64")
             if (jar.name.endsWith("natives-x86.jar")) outputDir = file("libs/x86")
-            if(outputDir != null) {
+            if (outputDir != null) {
                 copy {
                     from zipTree(jar)
                     into outputDir
@@ -59,13 +71,13 @@ task copyAndroidNatives {
     }
 }
 
-tasks.whenTaskAdded { packageTask ->
+tasks.configureEach { packageTask ->
     if (packageTask.name.contains("package")) {
         packageTask.dependsOn "copyAndroidNatives"
     }
 }
 
-task run(type: Exec) {
+tasks.register('run', Exec) {
     def path
     def localProperties = project.file("../local.properties")
     if (localProperties.exists()) {
@@ -88,5 +100,5 @@ task run(type: Exec) {
 }
 
 dependencies {
-    implementation "com.google.android.gms:play-services-ads:21.1.0" // Ads
+    implementation "com.google.android.gms:play-services-ads:22.3.0" // Ads
 }

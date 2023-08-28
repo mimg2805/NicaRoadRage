@@ -1,8 +1,10 @@
 package com.marcosmiranda.nicaroadrage
 
+import android.content.Intent
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -101,7 +103,6 @@ class AndroidLauncher : AndroidApplication(), WindowController {
 
     private fun startAdvertising(adView: AdView) {
         val testDevices: MutableList<String> = ArrayList()
-        // testDevices.add("3B317ED93FEC6B5C4E4469A5DA37932F")
         testDevices.add("BE89C404157C24CCDB17A860A9B5B878")
 
         val reqConf = RequestConfiguration.Builder()
@@ -188,6 +189,10 @@ class AndroidLauncher : AndroidApplication(), WindowController {
                 )
             }
         }
+    }
+
+    override fun openPlayStore(name: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.marcosmiranda.$name")))
     }
 
 }

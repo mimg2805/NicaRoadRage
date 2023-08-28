@@ -83,6 +83,12 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
         helpBtnStyle.font = pixel16
         skin.add("helpBtn", helpBtnStyle)
 
+        val moreAppsBtnStyle = ImageTextButton.ImageTextButtonStyle()
+        moreAppsBtnStyle.up = skin.newDrawable(btnDrawable, Color.LIGHT_GRAY)
+        moreAppsBtnStyle.down = skin.newDrawable(btnDrawable, Color.DARK_GRAY)
+        moreAppsBtnStyle.font = pixel16
+        skin.add("moreAppsBtn", moreAppsBtnStyle)
+
         val exitBtnStyle = ImageTextButton.ImageTextButtonStyle()
         exitBtnStyle.up = skin.newDrawable(btnDrawable, Color.SCARLET)
         exitBtnStyle.down = skin.newDrawable(btnDrawable, Color.FIREBRICK)
@@ -133,12 +139,26 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
         })
         stage.addActor(helpBtn)
 
+        val moreAppsBtnLbl = Label(" MÁS APPS ", skin)
+        val moreAppsBtnIcon = Image(assets.get(CIRCLE_PLUS_ICON_PATH, Texture::class.java))
+        val moreAppsBtn = ImageTextButton(null, skin, "moreAppsBtn")
+        moreAppsBtn.add(moreAppsBtnIcon, moreAppsBtnLbl)
+        moreAppsBtn.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
+        moreAppsBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 450f)
+        moreAppsBtn.addListener(object : ChangeListener() {
+            override fun changed(event: ChangeEvent, actor: Actor) {
+                dispose()
+                game.screen = MoreAppsScreen(game)
+            }
+        })
+        stage.addActor(moreAppsBtn)
+
         val exitBtnLbl = Label(" SALIR ", skin)
         val exitBtnIcon = Image(assets.get(EXIT_ICON_PATH, Texture::class.java))
         val exitBtn = ImageTextButton(null, skin, "exitBtn")
         exitBtn.add(exitBtnIcon, exitBtnLbl)
         exitBtn.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
-        exitBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 450f)
+        exitBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 350f)
         exitBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 Gdx.app.exit()
