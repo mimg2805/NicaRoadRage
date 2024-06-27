@@ -178,8 +178,3 @@ const val LOW_FUEL_SOUND_PATH = SOUNDS_FOLDER + "lowfuel.wav"
 const val PAUSE_SOUND_PATH = SOUNDS_FOLDER + "pause.wav"
 const val RESTORE_FUEL_SOUND_PATH = SOUNDS_FOLDER + "restorefuel.wav"
 const val START_SOUND_PATH = SOUNDS_FOLDER + "start.wav"
-
-// app images paths
-const val SENIASNICAS_IMG_PATH = IMAGES_FOLDER + "seniasnicas.png"
-const val CURSOESTADISTICABASICA_IMG_PATH = IMAGES_FOLDER + "cursoestadisticabasica.png"
-const val PURISIMA_IMG_PATH = IMAGES_FOLDER + "purisima.png"

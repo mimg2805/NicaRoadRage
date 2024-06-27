@@ -14,9 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.Pool
 import com.badlogic.gdx.utils.viewport.FitViewport
-import kotlin.Any
-import kotlin.Float
-import kotlin.Int
 
 class GameScreen(private val game: NicaRoadRage): Screen {
 

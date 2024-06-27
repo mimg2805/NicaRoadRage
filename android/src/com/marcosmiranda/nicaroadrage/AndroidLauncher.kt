@@ -191,8 +191,8 @@ class AndroidLauncher : AndroidApplication(), WindowController {
         }
     }
 
-    override fun openPlayStore(name: String) {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.marcosmiranda.$name")))
+    override fun openPlayStore() {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Marcos+I.+Miranda+G.")))
     }
 
 }

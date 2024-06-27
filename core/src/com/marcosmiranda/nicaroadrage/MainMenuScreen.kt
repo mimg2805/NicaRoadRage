@@ -147,8 +147,7 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
         moreAppsBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 450f)
         moreAppsBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
-                dispose()
-                game.screen = MoreAppsScreen(game)
+                window.openPlayStore()
             }
         })
         stage.addActor(moreAppsBtn)
