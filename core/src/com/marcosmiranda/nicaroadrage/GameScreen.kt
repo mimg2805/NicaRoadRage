@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.Pool
-import com.badlogic.gdx.utils.viewport.FitViewport
+import com.badlogic.gdx.utils.viewport.StretchViewport
 
 class GameScreen(private val game: NicaRoadRage): Screen {
 
@@ -21,11 +21,11 @@ class GameScreen(private val game: NicaRoadRage): Screen {
     private val batch = game.batch
     private val camera = game.camera
     private var state = game.state
-    private val window = game.window
+    private val android = game.android
     private val vibrator = Gdx.input.isPeripheralAvailable(Input.Peripheral.Vibrator)
     private var vibrating = false
 
-    private val stage = Stage(FitViewport(WINDOW_WIDTH, WINDOW_HEIGHT))
+    private val stage = Stage(StretchViewport(WINDOW_WIDTH, WINDOW_HEIGHT))
     private val skin = Skin()
     private val glyph = GlyphLayout()
     // private val shapes = ShapeRenderer()
@@ -106,7 +106,7 @@ class GameScreen(private val game: NicaRoadRage): Screen {
     private var itemTime = 0f
 
     init {
-        window.hideBannerAd()
+        // android.hideBannerAd()
         state = GameState.STARTING
 
         Gdx.input.setCatchKey(Input.Keys.BACK, true)
@@ -174,6 +174,7 @@ class GameScreen(private val game: NicaRoadRage): Screen {
         exitBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 dispose()
+                android.showInterstitial()
                 game.screen = MainMenuScreen(game)
             }
         })
@@ -204,6 +205,7 @@ class GameScreen(private val game: NicaRoadRage): Screen {
                     gameMusic.stop()
                     game.state = GameState.MENU
                     game.screen = MainMenuScreen(game)
+                    android.showInterstitial()
                 }
             }
         }

@@ -11,7 +11,7 @@ const val PIXELEMULATOR_FONT_NAME = "PixelEmulator"
 
 // window stuff
 const val WINDOW_WIDTH = 480f
-const val WINDOW_HEIGHT = 900f
+const val WINDOW_HEIGHT = 960f
 const val WINDOW_WIDTH_HALF = WINDOW_WIDTH / 2
 const val WINDOW_HEIGHT_HALF = WINDOW_HEIGHT / 2
 val BACK_COLOR : Color = Color(0x1f1f1fff) // Color.valueOf("003300")
@@ -20,9 +20,9 @@ val BACK_COLOR : Color = Color(0x1f1f1fff) // Color.valueOf("003300")
 const val BUTTON_WIDTH = 220f
 const val BUTTON_HEIGHT = 70f
 //const val LOGO_X = 140f
-const val LOGO_Y = 130f
+const val LOGO_Y = 180f
 const val MAIN_MENU_BUTTON_X = 235f
-const val EXIT_BUTTON_Y = 30f
+const val EXIT_BUTTON_Y = 80f
 
 // new game screen stuff
 //const val LABEL_WIDTH = 450f

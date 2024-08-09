@@ -9,19 +9,28 @@ import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.Stage
-import com.badlogic.gdx.scenes.scene2d.ui.*
+import com.badlogic.gdx.scenes.scene2d.ui.Button
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog
+import com.badlogic.gdx.scenes.scene2d.ui.Image
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton
+import com.badlogic.gdx.scenes.scene2d.ui.Label
+import com.badlogic.gdx.scenes.scene2d.ui.Skin
+import com.badlogic.gdx.scenes.scene2d.ui.Table
+import com.badlogic.gdx.scenes.scene2d.ui.TextField
+import com.badlogic.gdx.scenes.scene2d.ui.Window
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.badlogic.gdx.utils.Align
-import com.badlogic.gdx.utils.viewport.FitViewport
-import java.util.*
+import com.badlogic.gdx.utils.viewport.StretchViewport
+import java.util.Locale
 
 class NewGameScreen(private val game: NicaRoadRage): Screen {
 
     private val assets = game.assets
-    private val window = game.window
+    // private val android = game.android
 
-    private val stage = Stage(FitViewport(WINDOW_WIDTH, WINDOW_HEIGHT))
+    private val stage = Stage(StretchViewport(WINDOW_WIDTH, WINDOW_HEIGHT))
     private val skin = Skin()
 
     private val prefs = Gdx.app.getPreferences("NicaRoadRage")
@@ -32,7 +41,7 @@ class NewGameScreen(private val game: NicaRoadRage): Screen {
 
     init {
         // Show ads, if there's WiFi
-        // if (window.isWifiOn() || window.isDataOn()) window.showBannerAd()
+        // if (android.isWifiOn() || android.isDataOn()) android.showBannerAd()
 
         setBackColor(BACK_COLOR)
 
@@ -104,20 +113,20 @@ class NewGameScreen(private val game: NicaRoadRage): Screen {
 
         // Create the elements
         val welcomeLbl = Label("¡Bienvenido a Nica Road Rage!", skin, "header")
-        welcomeLbl.setPosition(WINDOW_WIDTH_HALF - welcomeLbl.width / 2, 850f)
+        welcomeLbl.setPosition(WINDOW_WIDTH_HALF - welcomeLbl.width / 2, 900f)
         stage.addActor(welcomeLbl)
 
         val headerLbl = Label("Opciones iniciales:", skin, "header")
-        headerLbl.setPosition(WINDOW_WIDTH_HALF - headerLbl.width / 2, 800f)
+        headerLbl.setPosition(WINDOW_WIDTH_HALF - headerLbl.width / 2, 850f)
         stage.addActor(headerLbl)
 
         val playerNameLbl = Label("Nombre del jugador:", skin, "default")
-        playerNameLbl.setPosition(30f, 750f)
+        playerNameLbl.setPosition(30f, 800f)
         stage.addActor(playerNameLbl)
 
         val playerNameTxtField = TextField(null, skin, "playerName")
         playerNameTxtField.setSize(TEXTFIELD_WIDTH, TEXTFIELD_HEIGHT)
-        playerNameTxtField.setPosition(30f, 690f)
+        playerNameTxtField.setPosition(30f, 740f)
         playerNameTxtField.addListener(object : ClickListener() {
             override fun clicked(event: InputEvent?, x: Float, y: Float) {
                 //super.clicked(event, x, y)
@@ -128,7 +137,7 @@ class NewGameScreen(private val game: NicaRoadRage): Screen {
 
         val errorLbl = Label("ERROR: Tu nombre no puede estar vacío.", skin, "error")
         errorLbl.setSize(420f, 40f)
-        errorLbl.setPosition(30f, 640f)
+        errorLbl.setPosition(30f, 690f)
         errorLbl.setAlignment(Align.center)
         errorLbl.wrap = true
         errorLbl.isVisible = false
@@ -136,12 +145,12 @@ class NewGameScreen(private val game: NicaRoadRage): Screen {
 
         val musicLbl = Label("¿Activar música? ", skin, "default")
         musicLbl.height = CHECKBOX_SIZE
-        musicLbl.setPosition(30f, 580f)
+        musicLbl.setPosition(30f, 630f)
         stage.addActor(musicLbl)
 
         val musicChkBox = CheckBox(null, musicChkBoxStyle)
         musicChkBox.setSize(CHECKBOX_SIZE, CHECKBOX_SIZE)
-        musicChkBox.setPosition(300f, 580f)
+        musicChkBox.setPosition(300f, 630f)
         musicChkBox.isChecked = music
         musicChkBox.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
@@ -152,12 +161,12 @@ class NewGameScreen(private val game: NicaRoadRage): Screen {
 
         val soundLbl = Label("¿Activar sonido? ", skin, "default")
         soundLbl.height = CHECKBOX_SIZE
-        soundLbl.setPosition(30f, 520f)
+        soundLbl.setPosition(30f, 570f)
         stage.addActor(soundLbl)
 
         val soundChkBox = CheckBox(null, musicChkBoxStyle)
         soundChkBox.setSize(CHECKBOX_SIZE, CHECKBOX_SIZE)
-        soundChkBox.setPosition(300f, 520f)
+        soundChkBox.setPosition(300f, 570f)
         soundChkBox.isChecked = music
         soundChkBox.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
@@ -169,14 +178,14 @@ class NewGameScreen(private val game: NicaRoadRage): Screen {
         // Color picker
         val colorSelectLbl = Label("Color del auto:", skin, "default")
         colorSelectLbl.height = SMALL_BUTTON_HEIGHT
-        colorSelectLbl.setPosition(30f, 460f)
+        colorSelectLbl.setPosition(30f, 510f)
         stage.addActor(colorSelectLbl)
 
         val colorSelectDialog = Dialog("", skin)
 
         val colorSelectBtn = Button(colorSelectBtnStyle)
         colorSelectBtn.setSize(SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT)
-        colorSelectBtn.setPosition(300f, 460f)
+        colorSelectBtn.setPosition(300f, 510f)
         colorSelectBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 colorSelectDialog.isVisible = true
@@ -323,7 +332,7 @@ class NewGameScreen(private val game: NicaRoadRage): Screen {
         // colorSelectTable.setPosition(200f, 200f)
         // stage.addActor(colorSelectTable)
         colorSelectDialog.width = 400f
-        colorSelectDialog.setPosition(40f, WINDOW_HEIGHT_HALF - 160)
+        colorSelectDialog.setPosition(40f, WINDOW_HEIGHT_HALF - 120)
         colorSelectDialog.contentTable.add(colorSelectTable)
         colorSelectDialog.isVisible = false
         stage.addActor(colorSelectDialog)
@@ -357,7 +366,7 @@ class NewGameScreen(private val game: NicaRoadRage): Screen {
                     prefs.putFloat("soundVolume", DEFAULT_SOUND_VOLUME)
                     prefs.flush()
                     dispose()
-                    window.hideSystemUI()
+                    // android.hideSystemUI()
                     // game.screen = GameScreen(game) //MainMenuScreen(game)
                     game.screen = MainMenuScreen(game)
                 }

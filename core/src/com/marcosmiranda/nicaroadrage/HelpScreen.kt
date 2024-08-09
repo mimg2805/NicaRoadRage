@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.badlogic.gdx.utils.viewport.StretchViewport
 
-internal class HelpScreen(game: NicaRoadRage) : Screen {
+class HelpScreen(game: NicaRoadRage) : Screen {
 
     private val assets = game.assets
     private val skin: Skin

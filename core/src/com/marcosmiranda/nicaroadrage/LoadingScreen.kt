@@ -14,11 +14,11 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
-import com.badlogic.gdx.utils.viewport.FitViewport
+import com.badlogic.gdx.utils.viewport.StretchViewport
 
 class LoadingScreen(private val game: NicaRoadRage) : Screen {
 
-    private val stage = Stage(FitViewport(WINDOW_WIDTH, WINDOW_HEIGHT))
+    private val stage = Stage(StretchViewport(WINDOW_WIDTH, WINDOW_HEIGHT))
     private val skin = Skin()
     private var prefs = Gdx.app.getPreferences("NicaRoadRage")
     private var progress = 0
@@ -27,11 +27,11 @@ class LoadingScreen(private val game: NicaRoadRage) : Screen {
 
     private val assets = game.assets
     private var state = game.state
-    private val window = game.window
+    // private val android = game.android
 
     init {
         // Show ads, if there's WiFi
-        if (window.isWifiOn() || window.isDataOn()) window.showBannerAd()
+        // if (android.isWifiOn() || android.isDataOn()) android.showBannerAd()
 
         setBackColor(BACK_COLOR)
         state = GameState.LOADING

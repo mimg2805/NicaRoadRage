@@ -7,7 +7,7 @@ import com.badlogic.gdx.audio.Music
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 
-class NicaRoadRage(val window: WindowController) : Game() {
+class NicaRoadRage(val android: AndroidController) : Game() {
 
     lateinit var assets: AssetManager
     lateinit var batch: SpriteBatch

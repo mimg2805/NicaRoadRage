@@ -13,15 +13,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.badlogic.gdx.utils.viewport.FitViewport
+import com.badlogic.gdx.utils.viewport.StretchViewport
 
 class MainMenuScreen(private val game: NicaRoadRage): Screen {
 
     private val assets = game.assets
-    private val window = game.window
+    private val android = game.android
     private var menuMusic = game.menuMusic
 
-    private val stage: Stage = Stage(FitViewport(WINDOW_WIDTH, WINDOW_HEIGHT))
-    private val skin: Skin = Skin()
+    private var stage = Stage(StretchViewport(WINDOW_WIDTH, WINDOW_HEIGHT))
+    private val skin = Skin()
 
     private val prefs = Gdx.app.getPreferences("NicaRoadRage")
     private val playMusic = prefs.getBoolean("music", true)
@@ -31,7 +32,7 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
 
     init {
         // Show ads, if there's WiFi
-        if (window.isWifiOn() || window.isDataOn()) window.showBannerAd()
+        // if (android.isWifiOn() || android.isDataOn()) android.showBannerAd()
 
         game.state = GameState.MENU
         setBackColor(BACK_COLOR)
@@ -101,7 +102,7 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
         val playBtn = ImageTextButton(null, skin, "playBtn")
         playBtn.add(playBtnIcon, playBtnLbl)
         playBtn.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
-        playBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 750f)
+        playBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 800f)
         playBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 // window.hideBannerAd()
@@ -116,7 +117,7 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
         val optionsBtn = ImageTextButton(null, skin, "optionsBtn")
         optionsBtn.add(optionsBtnIcon, optionsBtnLbl)
         optionsBtn.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
-        optionsBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 650f)
+        optionsBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 700f)
         optionsBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 dispose()
@@ -130,10 +131,11 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
         val helpBtn = ImageTextButton(null, skin, "helpBtn")
         helpBtn.add(helpBtnIcon, helpBtnLbl)
         helpBtn.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
-        helpBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 550f)
+        helpBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 600f)
         helpBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 dispose()
+                // android.showInterstitial()
                 game.screen = HelpScreen(game)
             }
         })
@@ -144,10 +146,10 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
         val moreAppsBtn = ImageTextButton(null, skin, "moreAppsBtn")
         moreAppsBtn.add(moreAppsBtnIcon, moreAppsBtnLbl)
         moreAppsBtn.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
-        moreAppsBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 450f)
+        moreAppsBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 500f)
         moreAppsBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
-                window.openPlayStore()
+                android.openPlayStore()
             }
         })
         stage.addActor(moreAppsBtn)
@@ -157,7 +159,7 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
         val exitBtn = ImageTextButton(null, skin, "exitBtn")
         exitBtn.add(exitBtnIcon, exitBtnLbl)
         exitBtn.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
-        exitBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 350f)
+        exitBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 400f)
         exitBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 Gdx.app.exit()
@@ -173,7 +175,7 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
 
         // Name
         val nameLbl = Label("NICA ROAD RAGE", skin, "gameName")
-        nameLbl.setPosition(WINDOW_WIDTH_HALF - (nameLbl.width / 2), 70f)
+        nameLbl.setPosition(WINDOW_WIDTH_HALF - (nameLbl.width / 2), 120f)
         stage.addActor(nameLbl)
 
         // Music
@@ -199,12 +201,13 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
 
     override fun resume() {}
 
-    override fun resize(width: Int, height: Int) {}
+    override fun resize(width: Int, height: Int) {
+        stage.viewport.update(width, height, true)
+    }
 
     override fun dispose() {
         // prefs.flush()
         stage.dispose()
         skin.dispose()
     }
-
 }

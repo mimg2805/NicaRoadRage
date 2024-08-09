@@ -167,17 +167,17 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
 
         // Change player name row
         val playerNameLbl = Label("Nombre del jugador:", skin, "options")
-        playerNameLbl.setPosition(20f, 720f)
+        playerNameLbl.setPosition(20f, 770f)
         stage.addActor(playerNameLbl)
 
         val playerNameTxtField = TextField(playerName, skin, "playerNameTxtField")
         playerNameTxtField.setSize(TEXTFIELD_WIDTH, TEXTFIELD_HEIGHT)
-        playerNameTxtField.setPosition(20f, 650f)
+        playerNameTxtField.setPosition(20f, 700f)
         stage.addActor(playerNameTxtField)
 
         val resultLbl = Label("", skin, "result")
         resultLbl.setSize(400f, 48f)
-        resultLbl.setPosition(20f, 590f)
+        resultLbl.setPosition(20f, 640f)
         // resultLbl.isVisible = false
         resultLbl.wrap = true
         stage.addActor(resultLbl)
@@ -186,7 +186,7 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
         val saveBtn = ImageButton(greenBtnStyle)
         saveBtn.add(saveBtnIcon)
         saveBtn.setSize(SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT)
-        saveBtn.setPosition(340f, 650f)
+        saveBtn.setPosition(340f, 700f)
         saveBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 playerName = playerNameTxtField.text
@@ -208,13 +208,13 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
         // Reset high score row
         val kmsRecordLbl = Label("Distancia máxima: $kmsRecord", skin, "options")
         kmsRecordLbl.height = 48f
-        kmsRecordLbl.setPosition(20f, 500f)
+        kmsRecordLbl.setPosition(20f, 550f)
         stage.addActor(kmsRecordLbl)
         val eraseBtnIcon = Image(game.assets.get(TRASH_ICON_PATH, Texture::class.java))
         val eraseBtn = ImageButton(redBtnStyle)
         eraseBtn.add(eraseBtnIcon)
         eraseBtn.setSize(SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT)
-        eraseBtn.setPosition(400f, 500f)
+        eraseBtn.setPosition(400f, 550f)
         eraseBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 kmsRecord = 0
@@ -228,7 +228,7 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
         // Color picker
         val colorSelectLbl = Label("COLOR DEL AUTO:", skin, "options")
         colorSelectLbl.height = SMALL_BUTTON_HEIGHT
-        colorSelectLbl.setPosition(20f, 400f)
+        colorSelectLbl.setPosition(20f, 450f)
         stage.addActor(colorSelectLbl)
 
         val colorSelectDialog = Dialog("", skin)
@@ -236,7 +236,7 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
         val colorSelectBtn = Button(colorSelectBtnStyle)
         colorSelectBtn.color = getColorFromStr(carColor)
         colorSelectBtn.setSize(SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT)
-        colorSelectBtn.setPosition(300f, 400f)
+        colorSelectBtn.setPosition(300f, 450f)
         colorSelectBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 colorSelectDialog.isVisible = true
@@ -407,13 +407,13 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
         // colorSelectTable.setPosition(200f, 200f)
         // stage.addActor(colorSelectTable)
         colorSelectDialog.width = 400f
-        colorSelectDialog.setPosition(40f, 200f)
+        colorSelectDialog.setPosition(40f, 250f)
         colorSelectDialog.contentTable.add(colorSelectTable)
         colorSelectDialog.isVisible = false
         stage.addActor(colorSelectDialog)
 
         // Toggle music row
-        val musicToggleY = 700f
+        val musicToggleY = 750f
         val musicTxtLbl = Label("Música: ", skin, "options")
         musicTxtLbl.height = 48f
         musicTxtLbl.setPosition(20f, musicToggleY)
@@ -441,7 +441,7 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
         stage.addActor(musicChkBox)
 
         // Music volume row
-        val musicVolumeBtnsY = 580f
+        val musicVolumeBtnsY = 630f
         val musicVolumeTxtLbl = Label("Volumen de la música:", skin, "options")
         musicVolumeTxtLbl.setPosition(20f, musicVolumeBtnsY + 70f)
         musicVolumeTxtLbl.isVisible = false
@@ -490,7 +490,7 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
         stage.addActor(musicVolumeUpBtn)
 
         // Toggle sound row
-        val soundToggleY = 500f
+        val soundToggleY = 550f
         val soundTxtLbl = Label("Sonido: ", skin, "options")
         soundTxtLbl.height = 48f
         soundTxtLbl.setPosition(20f, soundToggleY)
@@ -515,7 +515,7 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
         stage.addActor(soundChkBox)
 
         // Sound volume row
-        val soundVolumeBtnsY = 380f
+        val soundVolumeBtnsY = 430f
         val soundVolumeTxtLbl = Label("Volumen del sonido:", skin, "options")
         soundVolumeTxtLbl.setPosition(20f, soundVolumeBtnsY + 70f)
         soundVolumeTxtLbl.isVisible = false
@@ -569,7 +569,7 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
         val playerOptsBtn = ImageTextButton(null, skin, "playerOptsBtn")
         playerOptsBtn.add(playerOptsBtnIcon, playerOptsBtnLbl)
         playerOptsBtn.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
-        playerOptsBtn.setPosition(15f, 800f)
+        playerOptsBtn.setPosition(15f, 850f)
         playerOptsBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 playerNameLbl.isVisible = true
@@ -609,7 +609,7 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
         val soundOptsBtn = ImageTextButton(null, skin, "soundOptsBtn")
         soundOptsBtn.add(soundOptsBtnIcon, soundOptsBtnLbl)
         soundOptsBtn.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
-        soundOptsBtn.setPosition(245f, 800f)
+        soundOptsBtn.setPosition(245f, 850f)
         soundOptsBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 playerNameLbl.isVisible = false
