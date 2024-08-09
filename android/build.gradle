@@ -102,5 +102,6 @@ tasks.register('run', Exec) {
 }
 
 dependencies {
-    implementation "com.google.android.gms:play-services-ads:23.1.0" // Ads
+    implementation "com.google.android.gms:play-services-ads:23.2.0" // Ads
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
