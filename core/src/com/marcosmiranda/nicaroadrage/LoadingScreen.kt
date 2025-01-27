@@ -40,34 +40,15 @@ class LoadingScreen(private val game: NicaRoadRage) : Screen {
         Gdx.input.setCatchKey(Input.Keys.MENU, true)
         Gdx.input.inputProcessor = stage
 
-        // set the loaders for the generator and the fonts themselves
-        val resolver: FileHandleResolver = InternalFileHandleResolver()
-        assets.setLoader(FreeTypeFontGenerator::class.java, FreeTypeFontGeneratorLoader(resolver))
-        assets.setLoader(BitmapFont::class.java, ".ttf", FreetypeFontLoader(resolver))
-
-        // create and load default fonts
-        // val arial = "arial"
-        // val comic = "comic"
-        // val pixel = "PixelEmulator"
-        // val start = "PressStart2P"
-
-        // createFonts(assets, arial, 12)
-        // createFonts(assets, arial, 14)
-        // createFonts(assets, arial, 16)
-        // createFonts(assets, arial, 18)
-        // createFonts(assets, arial, 20)
-        // createFonts(assets, arial, 22)
-        // createFonts(assets, arial, 24)
-        // createFonts(assets, arial, 28)
-        // createFonts(assets, arial, 32)
-        // createFonts(assets, arial, 48)
-
-        createFonts(assets, PIXELEMULATOR_FONT_NAME, 14)
-        createFonts(assets, PIXELEMULATOR_FONT_NAME, 16)
-        createFonts(assets, PIXELEMULATOR_FONT_NAME, 18)
-        createFonts(assets, PIXELEMULATOR_FONT_NAME, 20)
-        createFonts(assets, PIXELEMULATOR_FONT_NAME, 22)
-        createFonts(assets, PIXELEMULATOR_FONT_NAME, 24)
+        // load fonts
+        assets.load(PIXEL_EMULATOR_12, BitmapFont::class.java)
+        assets.load(PIXEL_EMULATOR_14, BitmapFont::class.java)
+        assets.load(PIXEL_EMULATOR_16, BitmapFont::class.java)
+        assets.load(PIXEL_EMULATOR_18, BitmapFont::class.java)
+        assets.load(PIXEL_EMULATOR_20, BitmapFont::class.java)
+        assets.load(PIXEL_EMULATOR_22, BitmapFont::class.java)
+        assets.load(PIXEL_EMULATOR_24, BitmapFont::class.java)
+        assets.load(PIXEL_EMULATOR_32, BitmapFont::class.java)
 
         // Load all of the needed resources
         assets.load(LOGO_PATH, Texture::class.java)
@@ -108,9 +89,8 @@ class LoadingScreen(private val game: NicaRoadRage) : Screen {
         assets.load(EXIT_ICON_PATH, Texture::class.java)
 
         // Loading text
-        val fontName = PIXELEMULATOR_FONT_NAME + "24.ttf"
-        assets.finishLoadingAsset<BitmapFont>(fontName)
-        val font = assets.get(fontName, BitmapFont::class.java)
+        assets.finishLoadingAsset<BitmapFont>(PIXEL_EMULATOR_24)
+        val font = assets.get(PIXEL_EMULATOR_24, BitmapFont::class.java)
         val defaultLblStyle = Label.LabelStyle(font, Color.WHITE)
         skin.add("default", defaultLblStyle)
 
@@ -134,7 +114,6 @@ class LoadingScreen(private val game: NicaRoadRage) : Screen {
             val playerName = prefs.getString("playerName", "")
             if (playerName.isBlank()) game.screen = NewGameScreen(game)
             else game.screen = MainMenuScreen(game)
-            // else game.screen = MoreAppsScreen(game)
         }
     }
 

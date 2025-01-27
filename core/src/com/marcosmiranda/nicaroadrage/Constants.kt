@@ -7,7 +7,16 @@ const val DEFAULT_MUSIC_VOLUME = 20f
 const val DEFAULT_SOUND_VOLUME = 20f
 const val VOLUME_DIVIDER = 100f
 const val VIBRATE_TIME = 10
-const val PIXELEMULATOR_FONT_NAME = "PixelEmulator"
+
+// Fonts
+const val PIXEL_EMULATOR_12 = "fonts/PixelEmulator12.fnt"
+const val PIXEL_EMULATOR_14 = "fonts/PixelEmulator14.fnt"
+const val PIXEL_EMULATOR_16 = "fonts/PixelEmulator16.fnt"
+const val PIXEL_EMULATOR_18 = "fonts/PixelEmulator18.fnt"
+const val PIXEL_EMULATOR_20 = "fonts/PixelEmulator20.fnt"
+const val PIXEL_EMULATOR_22 = "fonts/PixelEmulator22.fnt"
+const val PIXEL_EMULATOR_24 = "fonts/PixelEmulator24.fnt"
+const val PIXEL_EMULATOR_32 = "fonts/PixelEmulator32.fnt"
 
 // window stuff
 const val WINDOW_WIDTH = 480f

@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Stage
@@ -15,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport
 
 class OptionsScreen(private val game: NicaRoadRage) : Screen {
 
+    private val assets = game.assets
     private val stage: Stage
     private val skin: Skin
 
@@ -72,19 +74,19 @@ class OptionsScreen(private val game: NicaRoadRage) : Screen {
         skin.add(pixmapName, Texture(pixmap))
 
         // Rounded rectangle buttons
-        val btnImage = Image(game.assets.get(BUTTON_SPRITE_PATH, Texture::class.java))
+        val btnImage = Image(assets.get(BUTTON_SPRITE_PATH, Texture::class.java))
         val btnDrawable = btnImage.drawable
-        val smallBtnImage = Image(game.assets.get(BUTTON_SMALL_SPRITE_PATH, Texture::class.java))
+        val smallBtnImage = Image(assets.get(BUTTON_SMALL_SPRITE_PATH, Texture::class.java))
         val smallBtnDrawable = smallBtnImage.drawable
 
         // add the check icon for use with the checkbox
-        val check = Sprite(game.assets.get(CHECK_ICON_PATH, Texture::class.java))
+        val check = Sprite(assets.get(CHECK_ICON_PATH, Texture::class.java))
         check.setSize(CHECKBOX_SIZE, CHECKBOX_SIZE)
         skin.add("check", check)
 
         // Get fonts from the asset manager & build the various element styles
-        val pixel16 = loadFont(game.assets, PIXELEMULATOR_FONT_NAME, 16)
-        val pixel18 = loadFont(game.assets, PIXELEMULATOR_FONT_NAME, 18)
+        val pixel16 = assets.get(PIXEL_EMULATOR_16, BitmapFont::class.java)
+        val pixel18 = assets.get(PIXEL_EMULATOR_18, BitmapFont::class.java)
         val defaultLblStyle = Label.LabelStyle(pixel16, Color.WHITE)
         val optionsLblStyle = Label.LabelStyle(pixel18, Color.WHITE)
         val resultLblStyle = Label.LabelStyle(pixel16, Color.WHITE)

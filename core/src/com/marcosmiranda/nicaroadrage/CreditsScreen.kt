@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.Image
@@ -78,13 +79,11 @@ class CreditsScreen(game: NicaRoadRage) : Screen {
         Gdx.input.inputProcessor = stage
 
         // Get fonts from the asset manager
-        // val pixel12 = loadFont(game.assets, PIXELEMULATOR_FONT_NAME, 12)
-        // val pixel14 = loadFont(game.assets, PIXELEMULATOR_FONT_NAME, 14)
-        val pixel16 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 16)
-        val pixel18 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 18)
-        val pixel20 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 20)
-        val pixel22 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 22)
-        val pixel24 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 24)
+        val pixel16 = assets.get(PIXEL_EMULATOR_16, BitmapFont::class.java)
+        val pixel18 = assets.get(PIXEL_EMULATOR_18, BitmapFont::class.java)
+        val pixel20 = assets.get(PIXEL_EMULATOR_20, BitmapFont::class.java)
+        val pixel22 = assets.get(PIXEL_EMULATOR_22, BitmapFont::class.java)
+        val pixel24 = assets.get(PIXEL_EMULATOR_24, BitmapFont::class.java)
         val pixel16LblStyle = LabelStyle(pixel16, Color.WHITE)
         val pixel18LblStyle = LabelStyle(pixel18, Color.WHITE)
         val pixel20LblStyle = LabelStyle(pixel20, Color.WHITE)

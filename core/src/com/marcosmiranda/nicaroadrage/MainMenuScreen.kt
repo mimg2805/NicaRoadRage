@@ -1,10 +1,12 @@
 package com.marcosmiranda.nicaroadrage
 
+import com.badlogic.gdx.Application
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.Image
@@ -12,13 +14,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
-import com.badlogic.gdx.utils.viewport.FitViewport
 import com.badlogic.gdx.utils.viewport.StretchViewport
 
 class MainMenuScreen(private val game: NicaRoadRage): Screen {
 
     private val assets = game.assets
-    private val android = game.android
     private var menuMusic = game.menuMusic
 
     private var stage = Stage(StretchViewport(WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -53,9 +53,9 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
         val btnDrawable = btnImage.drawable
 
         // Get fonts from the asset manager & build the various element styles
-        val pixel16 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 16)
-        val pixel18 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 18)
-        val pixel24 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 24)
+        val pixel16 = assets.get(PIXEL_EMULATOR_16, BitmapFont::class.java)
+        val pixel18 = assets.get(PIXEL_EMULATOR_18, BitmapFont::class.java)
+        val pixel24 = assets.get(PIXEL_EMULATOR_24, BitmapFont::class.java)
         val defaultLblStyle = Label.LabelStyle(pixel18, Color.WHITE)
         val headerLblStyle = Label.LabelStyle(pixel18, Color.GOLD)
         val errorLblStyle = Label.LabelStyle(pixel16, Color.RED)
@@ -149,7 +149,7 @@ class MainMenuScreen(private val game: NicaRoadRage): Screen {
         moreAppsBtn.setPosition(WINDOW_WIDTH_HALF - (BUTTON_WIDTH / 2), 500f)
         moreAppsBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
-                android.openPlayStore()
+                if (game.platform == Application.ApplicationType.Android) Gdx.net.openURI("https://play.google.com/store/apps/developer?id=Marcos+I.+Miranda+G.")
             }
         })
         stage.addActor(moreAppsBtn)

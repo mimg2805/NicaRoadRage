@@ -2,7 +2,6 @@ package com.marcosmiranda.nicaroadrage
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.AssetManager
-import com.badlogic.gdx.audio.Music
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.BitmapFont
@@ -20,23 +19,6 @@ fun clear() {
 fun setBackColor(color: Color) {
     Gdx.gl.glClearColor(color.r, color.g, color.b, color.a)
     clear()
-}
-
-// creates fonts with the given size and loads them to the asset manager
-fun createFonts(assets: AssetManager, fontFileName: String, size: Int, borderWidth: Float = 2f, borderColor: Color = Color.BLACK) {
-    val parameter = FreetypeFontLoader.FreeTypeFontLoaderParameter()
-    parameter.fontFileName = "fonts/$fontFileName.ttf"
-    parameter.fontParameters.size = size
-    parameter.fontParameters.borderWidth = borderWidth
-    parameter.fontParameters.borderColor = borderColor
-    parameter.fontParameters.borderStraight = true
-    assets.load("$fontFileName$size.ttf", BitmapFont::class.java, parameter)
-    //assets.finishLoading();
-}
-
-// load created font
-fun loadFont(assets: AssetManager, fontName: String, size: Int) : BitmapFont {
-    return assets.get("$fontName$size.ttf", BitmapFont::class.java)
 }
 
 fun getRandLocation(min: Int, range: Int) : Float {

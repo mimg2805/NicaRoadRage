@@ -5,7 +5,6 @@ interface AndroidController {
     fun hideSystemUI()
     fun isWifiOn(): Boolean
     fun isDataOn(): Boolean
-    fun openPlayStore()
     // fun showBannerAd()
     // fun hideBannerAd()
     fun isInterstitialLoaded(): Boolean

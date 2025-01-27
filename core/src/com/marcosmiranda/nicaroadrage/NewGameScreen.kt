@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.InputEvent
@@ -63,8 +64,8 @@ class NewGameScreen(private val game: NicaRoadRage): Screen {
         val btnDrawable = btnImg.drawable
 
         // Get fonts from the asset manager & build the various element styles
-        val pixel16 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 16)
-        val pixel18 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 18)
+        val pixel16 = assets.get(PIXEL_EMULATOR_16, BitmapFont::class.java)
+        val pixel18 = assets.get(PIXEL_EMULATOR_18, BitmapFont::class.java)
         val defaultLblStyle = Label.LabelStyle(pixel18, Color.WHITE)
         val headerLblStyle = Label.LabelStyle(pixel18, Color.GOLD)
         val errorLblStyle = Label.LabelStyle(pixel16, Color.RED)
@@ -176,7 +177,7 @@ class NewGameScreen(private val game: NicaRoadRage): Screen {
         stage.addActor(soundChkBox)
 
         // Color picker
-        val colorSelectLbl = Label("Color del auto:", skin, "default")
+        val colorSelectLbl = Label("Color del auto: ", skin, "default")
         colorSelectLbl.height = SMALL_BUTTON_HEIGHT
         colorSelectLbl.setPosition(30f, 510f)
         stage.addActor(colorSelectLbl)

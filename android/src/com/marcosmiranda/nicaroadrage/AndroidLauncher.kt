@@ -122,7 +122,9 @@ class AndroidLauncher : AndroidApplication(), AndroidController {
     */
 
     private fun createGameView(cfg: AndroidApplicationConfiguration): View {
-        gameView = initializeForView(NicaRoadRage(this), cfg)
+        val game = NicaRoadRage()
+        game.android = this
+        gameView = initializeForView(NicaRoadRage(), cfg)
         // val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
         // val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT)
         // val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
@@ -256,10 +258,6 @@ class AndroidLauncher : AndroidApplication(), AndroidController {
                 )
             }
         }
-    }
-
-    override fun openPlayStore() {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Marcos+I.+Miranda+G.")))
     }
 
 }

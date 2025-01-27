@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.Image
@@ -30,8 +31,8 @@ class HelpScreen(game: NicaRoadRage) : Screen {
         // stage.isDebugAll = true
 
         // Get fonts from the asset manager
-        val pixel14 = loadFont(game.assets, PIXELEMULATOR_FONT_NAME, 14)
-        val pixel16 = loadFont(game.assets, PIXELEMULATOR_FONT_NAME, 16)
+        val pixel14 = assets.get(PIXEL_EMULATOR_14, BitmapFont::class.java)
+        val pixel16 = assets.get(PIXEL_EMULATOR_16, BitmapFont::class.java)
         val defaultLblStyle = LabelStyle(pixel16, Color.WHITE)
         val helpLblStyle = LabelStyle(pixel14, Color.WHITE)
         skin.add("default", defaultLblStyle)
@@ -62,7 +63,7 @@ class HelpScreen(game: NicaRoadRage) : Screen {
 
         // Texto
         val lblX = 80f
-        val lblWidth = 400f
+        val lblWidth = 380f
         val lblHelp1 = Label("Al iniciar el juego, controlas un auto de tu color favorito. EL auto se controla presionando la pantalla a la izquierda o a la derecha. Empiezas con 100 puntos de combustible y acelerarás por la carretera automáticamente mientras tengas combustible.", helpLblStyle)
         lblHelp1.setPosition(lblX, 800f)
         lblHelp1.width = lblWidth
@@ -122,7 +123,7 @@ class HelpScreen(game: NicaRoadRage) : Screen {
         val backBtn = ImageTextButton(null, skin, "backBtn")
         backBtn.add(backBtnIcon, backBtnLbl)
         backBtn.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
-        backBtn.setPosition(MAIN_MENU_BUTTON_X, EXIT_BUTTON_Y)
+        backBtn.setPosition(MAIN_MENU_BUTTON_X, 40f)
         backBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 dispose()

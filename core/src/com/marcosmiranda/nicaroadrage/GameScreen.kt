@@ -1,11 +1,13 @@
 package com.marcosmiranda.nicaroadrage
 
+import com.badlogic.gdx.Application
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.GlyphLayout
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Stage
@@ -29,8 +31,8 @@ class GameScreen(private val game: NicaRoadRage): Screen {
     private val skin = Skin()
     private val glyph = GlyphLayout()
     // private val shapes = ShapeRenderer()
-    private val pixel16 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 16)
-    private val pixel20 = loadFont(assets, PIXELEMULATOR_FONT_NAME, 20)
+    private val pixel16 = assets.get(PIXEL_EMULATOR_16, BitmapFont::class.java)
+    private val pixel20 = assets.get(PIXEL_EMULATOR_20, BitmapFont::class.java)
 
     private val prefs = Gdx.app.getPreferences("NicaRoadRage")
     private val playerName = prefs.getString("playerName", "")
@@ -174,7 +176,7 @@ class GameScreen(private val game: NicaRoadRage): Screen {
         exitBtn.addListener(object : ChangeListener() {
             override fun changed(event: ChangeEvent, actor: Actor) {
                 dispose()
-                android.showInterstitial()
+                if (game.platform == Application.ApplicationType.Android) android?.showInterstitial()
                 game.screen = MainMenuScreen(game)
             }
         })
@@ -205,7 +207,7 @@ class GameScreen(private val game: NicaRoadRage): Screen {
                     gameMusic.stop()
                     game.state = GameState.MENU
                     game.screen = MainMenuScreen(game)
-                    android.showInterstitial()
+                    if (game.platform == Application.ApplicationType.Android) android?.showInterstitial()
                 }
             }
         }
