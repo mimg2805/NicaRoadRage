@@ -42,6 +42,7 @@ class AndroidLauncher : AndroidApplication(), AndroidController {
 
         // LibGDX Android config
         val cfg = AndroidApplicationConfiguration()
+        cfg.useGL30 = false
         cfg.useAccelerometer = false
         cfg.useCompass = false
         cfg.useGyroscope = false
@@ -124,7 +125,7 @@ class AndroidLauncher : AndroidApplication(), AndroidController {
     private fun createGameView(cfg: AndroidApplicationConfiguration): View {
         val game = NicaRoadRage()
         game.android = this
-        gameView = initializeForView(NicaRoadRage(), cfg)
+        gameView = initializeForView(game, cfg)
         // val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
         // val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT)
         // val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
@@ -216,7 +217,7 @@ class AndroidLauncher : AndroidApplication(), AndroidController {
         val network = cm.activeNetwork
         val nc = cm.getNetworkCapabilities(network)
 
-        return nc?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ?: false
+        return nc?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true
     }
 
     override fun isDataOn(): Boolean {
@@ -224,7 +225,7 @@ class AndroidLauncher : AndroidApplication(), AndroidController {
         val network = cm.activeNetwork
         val nc = cm.getNetworkCapabilities(network)
 
-        return nc?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ?: false
+        return nc?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) == true
     }
 
     override fun hideSystemUI() {

@@ -1,5 +1,9 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
+static def getDate() {
+    return new Date().format('yyyyMMdd').toInteger()
+}
+
 buildscript {
     repositories {
         mavenCentral()
@@ -11,7 +15,7 @@ buildscript {
         maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:8.8.0"
+        classpath 'com.android.tools.build:gradle:8.8.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
     }
@@ -64,7 +68,8 @@ configure(subprojects - project(':android')) {
 }
 
 subprojects {
-    version = '$projectVersion'
+    version = "$projectVersion"
+    // version = "$projectVersion-" + getDate()
     ext.appName = 'NicaRoadRage'
     repositories {
         mavenCentral()
